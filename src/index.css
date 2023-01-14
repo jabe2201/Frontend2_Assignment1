@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&family=Roboto:wght@300&family=Special+Elite&display=swap');
 
 #root {
-    width: 50vh;
+    width: 75vh;
     height: auto;
     padding-bottom: 50px;
     background-color: beige;
@@ -50,6 +50,10 @@
     display: flex;
     align-items: center;
     font-size: 12px;
+}
+
+.RemoveAll-Button {
+    margin-left: 10px;
 }
 
 .Todo {

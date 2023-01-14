@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React from "react";
 
-const Search = ({ searchOption, radioOption }) => {
+const Search = ({ searchOption, radioOption }, ref) => {
 
     const search = (value) => {
         searchOption(value);
@@ -15,15 +15,28 @@ const Search = ({ searchOption, radioOption }) => {
             <label>Filtrera på:</label>
             <input type="text" id="SearchField" onKeyUp={(e) => search(e.target.value)}/>
             <div className="SearchBox">
-                <input type="radio" name="radio" value="All" onChange={(e) => radio(e.target.value)}/>
+                <input 
+                    ref= { ref }
+                    type="radio" 
+                    name="radio" 
+                    value="All" 
+                    onChange={(e) => radio(e.target.value)}/>
                 <label>Alla</label>
-                <input type="radio" name="radio" value="Hushållsarbete" onChange={(e) => radio(e.target.value)}/>
+                <input 
+                    type="radio" 
+                    name="radio" 
+                    value="Hushållsarbete" 
+                    onChange={(e) => radio(e.target.value)}/>
                 <label>Hushållsarbete</label>
-                <input type="radio" name="radio" value="Jobb" onChange={(e) => radio(e.target.value)}/>
+                <input 
+                    type="radio" 
+                    name="radio" 
+                    value="Jobb" 
+                    onChange={(e) => radio(e.target.value)}/>
                 <label>Jobb</label>
             </div>            
         </div>
      );
 }
  
-export default Search;
+export default React.forwardRef(Search);

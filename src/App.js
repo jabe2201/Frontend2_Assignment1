@@ -1,7 +1,7 @@
 import './index.css';
 import Add from './Add';
 import TasksList from './TasksList';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useLocalStorage from './useLocalStorage';
 import Search from './Search';
 
@@ -27,7 +27,12 @@ function App() {
   }
   ]);
   const [search, setSearch] = useState("");
-  const [radio, setRadio] = useState("");
+  const [radio, setRadio] = useState("All");
+  const inputRef = useRef(null);
+  
+useEffect(() => {
+  inputRef.current.checked = true;
+}, [])
 
   const addTask = (task) => {
     setTasks([...tasks, task]);
@@ -35,6 +40,10 @@ function App() {
 
   const deleteTask = (id) => {
     setTasks(tasks => tasks.filter(task => task.id !== id));
+  }
+
+  const deleteTasks = () => {
+    setTasks([]);
   }
 
   const searchOption = (text) => {
@@ -50,12 +59,14 @@ function App() {
       <Add addTask={addTask}/>
       <Search 
         searchOption={ searchOption }
-        radioOption={ radioOption }/>
+        radioOption={ radioOption }
+        ref = { inputRef }/>
       <TasksList 
         tasks={tasks}
         deleteTask={ deleteTask }
         searchOption={ search }
-        radioOption={ radio }/>
+        radioOption={ radio }
+        deleteTasks = { deleteTasks }/>
     </div>
     
   );
